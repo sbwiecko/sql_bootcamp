@@ -17,13 +17,14 @@ Do not open the TAR file directly as it might show error.
 
 In pgAdmin, enter the Admin password and connect to Server:
 
-1. go to `Databases`, the `postgres` database is the default one.
+1. go to `Databases`, the `postgres` database is the default one used for connections.
 2. click right on `Databases` and select `Create > Database...`
    1. may need to add the path for all the executables in `File > Preferences`, in `Paths > Binary paths`, and then `PostgreSQL Binary Path`, find or paste the past for the corresponding PostgreSQL server.
-3. in the new window, in the tab `Generam`, enter a name for the database to be created/restored; click `save` to add the database to the list of Databases
+3. in the new window, in the tab `General`, enter a name for the database to be created/restored; click `save` to add the database to the list of Databases
 4. `Refresh` from the `Object` menu or by clicking left on the `Databases`
 5. choose the new database, and restore the data archive that has been downloaded via the `Tools` menu and `Restore...` option
-6. keep/choose the right format, and select the path to the data archive in `Filename`
+6. keep/choose the right format, e.g., `tar`, and select the path to the data archive in `Filename`
+   1. make sure to show all files with all extensions
 7. may want to swith on the Sections `Pre-data`, `Data` and `Post-data` in the `Data/Objects` tab; all other options can be left as default
 8. click on `Restore` and refresh the database list
 
@@ -37,3 +38,7 @@ The new database is now part of the Databases list in the PostgreSQL engine/serv
 - go to `File > Preferences`, in `Query Tool > Editor`, choose a different `Font size` ratio, e.g., 1.1
 - there is a `Query History` tab available with the history of the queries, and a `Scratch Pad` which can be used to hold text snippets during editing
 - have a look at the `Dashboard` tab which contains different technical details in the running server
+
+## using database
+
+When a database has multiple schamas, e.g., the exercice database has a public and cd schema, the queries for the `FROM` tables will have `cd.` in front of them.

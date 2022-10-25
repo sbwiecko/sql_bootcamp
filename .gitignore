@@ -1,6 +1,13 @@
+# complementary materials
 *.pptx
 *.tar
 *.docx
 *.pdf
 *.xlsx
 *.png
+
+# sources databases
+*.db
+
+# configuration files
+*config*
