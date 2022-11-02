@@ -47,5 +47,3 @@ print(df)
 cursor.close()
 conn.close()
 
-
-# %%

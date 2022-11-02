@@ -1,8 +1,8 @@
--- timestamps
--- TIME contains only time
--- DATE contains only date
--- TIMESTAMP contains date and time
--- TIMESTAMPTZ contains date, time and timezone
+/*timestamps
+TIME contains only time
+DATE contains only date
+TIMESTAMP contains date and time
+TIMESTAMPTZ contains date, time and timezone*/
 show all -- displays current settings, see https://www.postgresql.org/docs/current/sql-show.html
 ;
 
@@ -90,9 +90,9 @@ select lower(left(first_name, 1) || last_name || '@gmail.com') as custom_email -
 from customer
 ;
 
--- subquery
--- allow to construct complex queries, i.e., queries on the results of another query
--- subquery is performed first (inside parenthesis)
+/*subquery
+allow to construct complex queries, i.e., queries on the results of another query
+subquery is performed first (inside parenthesis)*/
 select title, rental_rate
 from film
 where rental_rate > -- works only if returns a single value
@@ -102,10 +102,10 @@ where rental_rate > -- works only if returns a single value
 )
 ;
 
--- subquery
--- allow to construct complex queries, i.e., queries on the results of another query
--- subquery is performed first (inside parenthesis)
--- example - titles from films returned at a certain date ~ join
+/*subquery
+allow to construct complex queries, i.e., queries on the results of another query
+subquery is performed first (inside parenthesis)
+example - titles from films returned at a certain date ~ join*/
 select film_id, title
 from film
 where film_id in -- subquery returns multiple results
@@ -132,13 +132,13 @@ where exists
 )
 ;
 
--- self-join is a query in which a table is joined to itself
--- self-joins are useful for comparing values in a column or rows
--- within the same table ~ join of two copies to the same table
--- no special keyword, uses standard JOIN, but assign an two alias
--- for the table otherwise the table name would be ambiguous
--- example: each employee sends reports to another employee
--- another example is films matching other films from same length
+/*self-join is a query in which a table is joined to itself
+self-joins are useful for comparing values in a column or rows
+within the same table ~ join of two copies to the same table
+no special keyword, uses standard JOIN, but assign an two alias
+for the table otherwise the table name would be ambiguous
+example: each employee sends reports to another employee
+another example is films matching other films from same length*/
 select f1.title, f2.title, f1.length
 from film as f1
 inner join film as f2

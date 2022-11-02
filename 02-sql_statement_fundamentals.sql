@@ -1,11 +1,12 @@
---first query
+--first query/STATEMENT
+-- a STATEMENT starts with a KEYWORD and ends with a semicolon
 select * from film;
 
 --select particular columns
 select first_name, last_name, email
 from customer;
 
---find unique values in column
+--find unique values in column/IDENTIFIER
 select distinct release_year from film;
 
 --another syntax for DISTINCT
@@ -15,9 +16,11 @@ select distinct(release_year) from film; --number of rows
 select distinct rating from film;
 
 --COUNT is a function, need parentheses
+-- FUNCTIONS are a special of KEYWORDS in SQL
 select count(title) from film;
 
 --COUNT(*) and COUNT(TITLE) return exact same value
+-- COUNT(TITLE) is an EXPRESSION, or a formula that results in a value
 select count(distinct(rating)) from film; --same as COUNT(DISTINCT rating)
 
 --more complex queries
@@ -25,7 +28,7 @@ select *
 from customer
 where first_name = 'Jared';
 
---
+-- the STATEMENT below contains 3 CLAUSES
 select count(title)
 from film
 where rental_rate > 4 and replacement_cost >= 19.99
@@ -36,6 +39,7 @@ select email
 from customer
 where first_name = 'Nancy'
 and last_name = 'Thomas'
+-- a PREDICATE is a logical comparison that results in TRUE/FALSE/UNKNOWN
 ;
 
 --what's the description for the movie "Outlaw Hanky"?
@@ -92,9 +96,9 @@ from film
 where length <= 50
 ;
 
---BETWEEN is inclusive, e.g., BETWEEN 8 AND 10 include 8
---NOT BETWEEN is no inclusive, e.g., NOT BETWEEN 8 AND 10 excludes 8
---date format is ISO 8601, i.e., YYYY-MM-DD
+/*BETWEEN is inclusive, e.g., BETWEEN 8 AND 10 include 8
+NOT BETWEEN is no inclusive, e.g., NOT BETWEEN 8 AND 10 excludes 8
+date format is ISO 8601, i.e., YYYY-MM-DD*/
 select count(*) from payment
 where payment_date between '2007-02-01' and '2007-02-15' --actually 15th 0:00
 --so it doesn't include 2007-02-15!
@@ -103,14 +107,14 @@ where payment_date between '2007-02-01' and '2007-02-15' --actually 15th 0:00
 select count(*) from payment
 where amount in (.99, 1.98, 1.99)
 
---pattern matching
---% matches any sequence of characters, can also be zero match/blank
---_ matches any single character
---multiple underscores possible, e.g., 'Version#A4' --> WHERE vlaue LIKE 'Version#__'
---e.g., starts with an 'A' --> WHERE name LIKE 'A%'
---ILIKE is case-insensitive
---more complex pattern, e.g., WHERE name LIKE '_her%' returns ('Cheryl', 'Theresa', 'Sherri')
---regex supported, see more at https://www.postgresql.org/docs/12/functions-matching.html
+/*pattern matching
+% matches any sequence of characters, can also be zero match/blank
+_ matches any single character
+multiple underscores possible, e.g., 'Version#A4' --> WHERE vlaue LIKE 'Version#__'
+e.g., starts with an 'A' --> WHERE name LIKE 'A%'
+ILIKE is case-insensitive
+more complex pattern, e.g., WHERE name LIKE '_her%' returns ('Cheryl', 'Theresa', 'Sherri')
+regex supported, see more at https://www.postgresql.org/docs/12/functions-matching.html*/
 select *
 from customer
 where first_name like 'A%'

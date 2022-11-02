@@ -5,6 +5,7 @@
 *.pdf
 *.xlsx
 *.png
+*.csv
 
 # sources databases
 *.db

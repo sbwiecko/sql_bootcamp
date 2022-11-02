@@ -1,6 +1,6 @@
--- *********************
--- SQL Assessment Test 2
--- *********************
+/*********************
+SQL Assessment Test 2
+*********************/
 
 -- 1. How can you retrieve all the information from the cd.facilities table?
 select * from cd.facilities;
@@ -17,9 +17,10 @@ from cd.facilities
 where membercost > 0
 ;
 
--- 4. How can you produce a list of facilities that charge a fee to members,
--- and that fee is less than 1/50th of the monthly maintenance cost?
--- Return the facid, facility name, member cost, and monthly maintenance of the facilities in question.
+/*4. How can you produce a list of facilities that charge a fee
+to members, and that fee is less than 1/50th of the monthly
+maintenance cost? Return the facid, facility name, member cost,
+and monthly maintenance of the facilities in question.*/
 select facid, name, membercost, monthlymaintenance
 from cd.facilities
 -- where membercost between 0 and monthlymaintenance / 50 -- inclusive...
@@ -89,8 +90,8 @@ order by facid asc
 -- 13. Produce a list of the start times for bookings for tennis courts, for the date '2012-09-21'?
 -- Return a list of start time and facility name pairings, ordered by the time.
 select starttime, name -- unique identifier in the schema
-from cd.bookings as b
-left join cd.facilities as f -- inner join also possible
+from cd.bookings b  -- by convention, table aliases don't need the AS keyword
+left join cd.facilities f -- inner join also possible
 on b.facid = f.facid
 where to_char(b.starttime, 'YYYY-MM-DD') = '2012-09-21'
 -- not necessary to convert -> use between or >= '2012-09-21' AND < '2012-09-22'
@@ -99,8 +100,8 @@ and name ilike '%tennis%court%' -- 'tennis court' specifically asked; % matches 
 
 -- 14. How can you produce a list of the start times for bookings by members named 'David Farrell'?
 select starttime
-from cd.bookings as b
-right outer join cd.members as m -- inner join also working
+from cd.bookings b
+right outer join cd.members m -- inner join also working
 on b.memid = m.memid
 where m.firstname = 'David'
 and m.surname = 'Farrell'
